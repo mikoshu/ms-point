@@ -1,0 +1,53 @@
+{
+  "name": "ms-point",
+  "version": "1.0.4",
+  "description": "前端自动构建工具",
+  "main": "index.js",
+  "bin": {
+    "msp": "./bin/msp.js"
+  },
+  "scripts": {
+    "test": "msp init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikoshu/ms-point.git"
+  },
+  "keywords": [
+    "sass",
+    "ssi",
+    "pack",
+    "fis3"
+  ],
+  "author": "mikoshu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikoshu/ms-point/issues"
+  },
+  "homepage": "https://github.com/mikoshu/ms-point#readme",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "express": "^4.13.4",
+    "fis-parser-node-sass": "^0.2.0",
+    "fis-parser-ssi": "^1.0.9",
+    "fis3": "^3.4.3",
+    "fis3-hook-relative": "^1.0.7",
+    "inquirer": "^1.0.2",
+    "node-sass": "^3.7.0",
+    "opener": "^1.4.1",
+    "serve-index": "^1.7.3",
+    "ssi": "^0.3.0",
+    "watchr": "^2.4.13",
+    "websocket.io": "^0.2.1"
+  },
+  "devDependencies": {
+    "commander": "^2.9.0",
+    "express": "^4.13.4",
+    "inquirer": "^1.0.2",
+    "node-sass": "^3.7.0",
+    "opener": "^1.4.1",
+    "serve-index": "^1.7.3",
+    "ssi": "^0.3.0"
+  },
+  "readmeFilename": "README.md"
+}
