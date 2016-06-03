@@ -48,6 +48,5 @@
     "opener": "^1.4.1",
     "serve-index": "^1.7.3",
     "ssi": "^0.3.0"
-  },
-  "readmeFilename": "README.md"
+  }
 }
