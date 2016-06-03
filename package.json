@@ -28,7 +28,7 @@
   "dependencies": {
     "commander": "^2.9.0",
     "express": "^4.13.4",
-    "fis-parser-node-sass": "^0.2.0",
+    "fis-parser-node-sass-x": "^0.2.0",
     "fis-parser-ssi": "^1.0.9",
     "fis3": "^3.4.3",
     "fis3-hook-relative": "^1.0.7",
