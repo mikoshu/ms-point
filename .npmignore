@@ -4,3 +4,4 @@ test.js
 /lib/wwwroot
 /example
 /wwww
+.DS_Store
