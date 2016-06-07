@@ -1,6 +1,6 @@
 {
   "name": "ms-point",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "description": "前端自动构建工具",
   "main": "index.js",
   "bin": {
