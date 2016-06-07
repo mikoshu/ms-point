@@ -150,9 +150,9 @@ function manager(src){
 
 		 	function getCssData(){
 		 		var data = sass.renderSync({
-						    file: file_url,
-						    //outputStyle: 'compressed'
-						})
+						file: file_url,
+						//outputStyle: 'compressed'
+					})
 		 		res.setHeader('Content-Type','text/css')
 				res.send(data.css.toString())
 		 	}

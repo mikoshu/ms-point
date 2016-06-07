@@ -19,18 +19,16 @@ program
 
 program
     .command('pack')
-    .description('调用fis3打包')
+    .description('打包wwwroot目录')
     .action(function(){
         lib.pack()
     })
 
 program
-  .option('-d','输出到文件夹')
-  .option('-h, --help','print this help message')
-  .option('-v, --version', 'print product version and exit')
-  .option('-r, --root <path>', 'specify project root')
-  .option('-f, --file <filename>','specify the file path of `fis-conf.js`')
-  .option('--no-color', 'disable colored output')
-  .option('--verbose', 'enable verbose mode')
+  .option('-a, --all','打包文件中.js和.css文件进行压缩')
+  .option('-j, --javascript','打包时压缩js文件')
+  .option('-v, --version', '查看ms-point版本号')
+  .option('-c, --css', '打包时只压缩css')
+  
 
 program.parse(process.argv)
