@@ -43,7 +43,7 @@
 
 + 若用sass编译css文件，html文件内部 <link> 标签的 href 属性后缀应为 .css 后台开启的express服务器会将同名的 .scss 或 .sass 文件编译后代理到同名的 .css 请求内容里，如：
 
-    <link href="css/style.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
 
   以上链接，若 css/ 目录下不存在style.css文件，将会请求 style.scss 或 style.sass 文件并且编译后作为css文件。执行 msp pack 命令后会在 ./dist 目录下生成css文件，因此html文件里无需改变。
 
