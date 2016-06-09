@@ -38,3 +38,13 @@
 	msp pack -a
 
 + 运行如上代码，会将当前wwwroot目录下的内容打包到项目文件夹 ./dist 文件夹下，且压缩js以及css文件。（ 默认配置已处理scss编译以及ssi语法 ）
+
+## 注意
+
++ 若用sass编译css文件，html文件内部 <link> 标签的 href 属性后缀应为 .css 后台开启的express服务器会将同名的 .scss 或 .sass 文件编译后代理到同名的 .css 请求内容里，如：
+
+	<link href="css/style.css" rel="stylesheet"/>
+
+以上链接，若 css/ 目录下不存在style.css文件，将会请求 style.scss 或 style.sass 文件并且编译后作为css文件。执行 msp pack 命令后会在 ./dist 目录下生成css文件，因此html文件里无需改变。
+
++ 对于 .html 和 .shtml 文件，服务器也会在同名之间互相代理，如目录下没有 index.shtml 文件，访问 localhost/index.shtml 时，则会访问到同名的 .html 文件。 同样如果不存在 .html 文件时，会访问到同名的.shtml 文件。但执行 msp pack 打包命令以后，所有的 .shtml 文件都将被重命名为 .html 。因此如有跳转链接时，统一使用 .html 后缀。
