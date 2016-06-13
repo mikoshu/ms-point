@@ -9,6 +9,7 @@ var express = require('express'),
 	net = require('net'),
 	fs = require('fs'),
 	path = require('path'),
+	URL = require('url'),
 	baseSrc = require('./baseSrc')(),
 	baseSrc = "/" + baseSrc,
 	port = 3000,
@@ -67,7 +68,7 @@ function portIsOccupied (port) {
 
 function manager(src){
 		app.get('**/*.shtml',function(req,res,next){  // .shtml 后缀文件 修改header 为html
-			var url = ~req.url.indexOf("?") ? req.url.split("?")[0] : req.url  // 处理shtml后跟参数情况
+			var url = URL.parse(req.url).pathname
 			var filename = path.join(src,url)
 			toReload(filename,src,req.hostname,function(html){
 				res.send(html)
@@ -75,8 +76,7 @@ function manager(src){
 		})
 		 
 		app.get('**/*.html',function(req,res,next){ // .html 后缀文件如不存在映射到相同文件名的 .shtml文件
-			var url = path.normalize(req.url),
-				url = ~url.indexOf("?") ? url.split("?")[0] : url  // 处理html后跟参数情况
+			var url = URL.parse(req.url).pathname,
 		 		filename = path.basename(url,'.html'),
 		 		dirname = path.dirname(url),
 		 		base = path.join(src,dirname,filename),
@@ -103,8 +103,7 @@ function manager(src){
 
 
 		app.get('**/*.css',function(req,res){  // 将.css 文件映射到 .scss上
-			var url = req.url;
-				url = ~url.indexOf("?") ? url = url.split("?")[0] : url // 去除livereload时候url后参数
+			var url = URL.parse(req.url).pathname
 			var	filename = path.basename(url,'.css'),
 		 		dirname = path.dirname(url),
 		 		base = path.join(src,dirname,'/',filename),
