@@ -13,7 +13,6 @@ var express = require('express'),
 	baseSrc = "/" + baseSrc,
 	port = 3000,
 	livePort = 35729,
-	//pathArr = [__dirname+"/example/project1"+baseSrc,__dirname+"/example/project2"+baseSrc,__dirname+"/example/haha"+baseSrc],
 	routerObj = {}
 
 module.exports = portIsOccupied
@@ -68,18 +67,21 @@ function portIsOccupied (port) {
 
 function manager(src){
 		app.get('**/*.shtml',function(req,res,next){  // .shtml 后缀文件 修改header 为html
-			var filename = src + req.url
+			var url = ~req.url.indexOf("?") ? req.url.split("?")[0] : req.url  // 处理shtml后跟参数情况
+			var filename = path.join(src,url)
 			toReload(filename,src,req.hostname,function(html){
 				res.send(html)
 			})
 		})
 		 
 		app.get('**/*.html',function(req,res,next){ // .html 后缀文件如不存在映射到相同文件名的 .shtml文件
-			var url = req.url,
-		 		filename = path.basename(req.url,'.html'),
-		 		dirname = path.dirname(req.url),
-		 		base = src + dirname + '/' + filename,
+			var url = path.normalize(req.url),
+				url = ~url.indexOf("?") ? url.split("?")[0] : url  // 处理html后跟参数情况
+		 		filename = path.basename(url,'.html'),
+		 		dirname = path.dirname(url),
+		 		base = path.join(src,dirname,filename),
 		 		file_url = base +".html"
+
 		 	fs.exists(file_url,function(exists){
 		 		if(exists){
 		 			toReload(base + ".html",src,req.hostname,function(html){
@@ -102,10 +104,10 @@ function manager(src){
 
 		app.get('**/*.css',function(req,res){  // 将.css 文件映射到 .scss上
 			var url = req.url;
-				url = url.indexOf("?") ? url = url.split("?")[0] : url // 去除livereload时候url后参数
+				url = ~url.indexOf("?") ? url = url.split("?")[0] : url // 去除livereload时候url后参数
 			var	filename = path.basename(url,'.css'),
 		 		dirname = path.dirname(url),
-		 		base = src + dirname + '/' + filename,
+		 		base = path.join(src,dirname,'/',filename),
 		 		scss_url = base + ".scss",
 		 		sass_url = base + ".sass",
 		 		css_url = base + ".css",
@@ -205,13 +207,3 @@ function getPort(){
     	}  
     })
 }
-
-
-// 执行
-//portIsOccupied(port)
-
-
-
-
-
-
