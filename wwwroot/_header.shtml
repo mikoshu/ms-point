@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="css/style.css" rel="stylesheet"/>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/comm.js" ></script>
+</head>
+<body>
+	<div>
+		<div class="top-nav">
+			<ul class="wrapper clearfix">
+				<li class="logo" >
+					<a href="#" title="WE婚戒定制中心"></a>
+				</li>
+				<li>
+					<a href="#" class="on" >首页</a>
+				</li>
+				<li>
+					<a href="#">经典案例</a>
+					<div class="sub-nav clearfix">
+						<div>
+							<h3>唯一系列</h3>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+						</div>
+						<div>
+							<h3>唯一系列</h3>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+						</div>
+						<div>
+							<h3>唯一系列</h3>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+						</div>
+						<div>
+							<h3>唯一系列</h3>
+							<a href="#">爱的就是你</a>
+						</div>
+						<div>
+							<h3>唯一系列</h3>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+						</div>
+						<div>
+							<h3>唯一系列</h3>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+							<a href="#">爱的就是你</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="/series">系列产品</a>
+				</li>
+				<li>
+					<a href="#">品牌故事</a>
+				</li>
+				<li>
+					<a href="#">WE定制</a>
+				</li>
+				<li>
+					<a href="#">唯一社区</a>
+				</li>
+			</ul>
+			
+		</div>
+		
+		

@@ -3,7 +3,7 @@
 var program = require('commander'),
     lib = require('../lib'),
     fs = require('fs'),
-    pkg = fs.readFileSync(__dirname.replace(/\\bin/,'')+'/package.json'),
+    pkg = fs.readFileSync(__dirname.replace(/bin/,'')+'package.json'),
     version = JSON.parse(pkg).version
 
 program
