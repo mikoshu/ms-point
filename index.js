@@ -67,10 +67,17 @@ function portIsOccupied (port) {
 }
 
 function manager(src){
+		var routes = fs.existsSync(path.join(process.cwd(),"/DEV-INF","/route.js")) // app服务用于开发者操作
+	 	if(routes){
+ 			var dev_url = path.join(process.cwd(),"/DEV-INF","/route.js"),
+ 			dev_server = require(dev_url)(app)
+ 		}
+
 		app.get('**/*.shtml',function(req,res,next){  // .shtml 后缀文件 修改header 为html
 			var url = URL.parse(req.url).pathname
 			var filename = path.join(src,url)
 			toReload(filename,src,req.hostname,function(html){
+				res.setHeader("Content-Type","text/html")
 				res.send(html)
 			})
 		})
@@ -141,27 +148,24 @@ function manager(src){
 		 		}
 		 	})
 
-		 	app.use(express.static(process.cwd() + baseSrc,{ // 静态托管
-				setHeaders: function(res,path,start){
-					if(res && path.indexOf(".shtml" > -1)){
-						res.setHeader("Content-Type","text/html")
-					}
-				}
-			}))
+
 
 		 	function getCssData(){
 		 		var data = sass.renderSync({
-						file: file_url,
-						//outputStyle: 'compressed'
+						file: file_url
 					})
 		 		res.setHeader('Content-Type','text/css')
 				res.send(data.css.toString())
 		 	}
 		})
 
-		app.use(serveIndex(src,{
+	 	app.use(serveIndex(src,{
 			'icons': true
 		}))
+
+	 	app.use(express.static(path.join(process.cwd(),baseSrc)) )
+
+		
 }
 
 
@@ -177,7 +181,6 @@ function toReload(filename,src,hostname,callback){  // 处理html和shtml文件�
 					var data = parser.parse(filename,data)
 					if(data.contents.indexOf("</head>") > -1){
 						var html = data.contents.split("</head>")
-							//html[0] += '<script>document.write(\'<script src=\"http://localhost:'+livePort+'/livereload.js?snipver=1\"></script></head>\')</script>'
 							html[0] += '<script src="http://'+ hostname +':'+livePort+'/livereload.js?snipver=1"></script></head>'
 							html = html[0] + html[1]
 					}else{

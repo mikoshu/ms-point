@@ -48,3 +48,8 @@
   以上链接，若 css/ 目录下不存在style.css文件，将会请求 style.scss 或 style.sass 文件并且编译后作为css文件。执行 msp pack 命令后会在 ./dist 目录下生成css文件，因此html文件里无需改变。
 
 + 对于 .html 和 .shtml 文件，服务器也会在同名之间互相代理，如目录下没有 index.shtml 文件，访问 localhost/index.shtml 时，则会访问到同名的 .html 文件。 同样如果不存在 .html 文件时，会访问到同名的.shtml 文件。但执行 msp pack 打包命令以后，所有的 .shtml 文件都将被重命名为 .html 。因此如有跳转链接时，统一使用 .html 后缀。
+
+## 高级
+
++ msp init 初始化时生成 DEV-INF/route.js 文件，该文件用于对生成的 express 服务器进行配置。
++ 若需要对express服务器进行操作，可在初始化时创建的 DEV-INF/route.js 文件进行相关配置，该文件已暴露 app 服务，可以做反向代理等处理，也可在本地引入node模块对其进行处理。
