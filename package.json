@@ -1,7 +1,7 @@
 {
   "name": "ms-point",
   "version": "2.0.12",
-  "description": "前端自动构建工具",
+  "description": "前端构建工具,前端自动化构建工具",
   "main": "index.js",
   "bin": {
     "msp": "./bin/msp.js"
