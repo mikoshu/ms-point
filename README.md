@@ -4,6 +4,8 @@
 
 + `npm install -g ms-point` 更新最新 ms-point
 + `sudo npm install -g ms-point` (苹果系统)
++ 若安装出错可能为node-sass模块出错，请使用淘宝镜像 cnpm 命令如下(cnpm安装方法 <a href="https://npm.taobao.org/">点击此处</a> 查看)：
++ `cnpm install -g ms-point`
 
 ## 创建目录
 
