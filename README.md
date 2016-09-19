@@ -21,7 +21,7 @@
 
 + `scss`，`sass` 实时在线预览（无需编译打包）
 + `livereload` 自动刷新
-+ `ssi` `include` 语法
++ `ssi` `include` 语法 (语法形式为： `<!--#include virtual="header.shtml" -->` 如上语句将把该行代码位置替换成header.shtml文件内容。支持其他ssi语法 具体参阅 <a href="https://www.npmjs.com/package/ssi">ssi</a> )
 + `js`文件`css`文件打包 
 
 ## 打包处理
