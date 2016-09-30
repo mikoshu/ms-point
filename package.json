@@ -34,9 +34,11 @@
     "ssi": "^0.3.0",
     "uglify-js": "^2.6.2",
     "watchr": "^2.4.13",
-    "websocket.io": "^0.2.1"
+    "websocket.io": "^0.2.1",
+    "clean-css": "^3.4.20"
   },
   "devDependencies": {
+    "clean-css": "^3.4.20",
     "commander": "^2.9.0",
     "express": "^4.13.4",
     "inquirer": "^1.0.2",
