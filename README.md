@@ -51,6 +51,8 @@
 
 + 对于 `.html` 和 `.shtml` 文件，服务器也会在同名之间互相代理，如目录下没有 `index.shtml` 文件，访问 `localhost/index.shtml `时，则会访问到同名的 `.html` 文件。 同样如果不存在 `.html` 文件时，会访问到同名的`.shtml `文件。但执行 `msp pack` 打包命令以后，所有的 `.shtml` 文件都将被重命名为 `.html` 。因此如有跳转链接时，统一使用 `.html` 后缀。
 
++ `wwwroot` 目录只用于托管项目资源，请勿将 `node_modules` 文件夹放入`wwwroot`目录下，打包时将会忽略`node_modules`目录。如需node模块资源可将其放在与`wwwroot`目录同级的`node_modules`下。
+
 ## 高级
 
 + `msp init` 初始化时生成 `DEV-INF/route.js` 文件，该文件用于对生成的 `express` 服务器进行配置。
