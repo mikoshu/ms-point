@@ -30,7 +30,10 @@ function portIsOccupied (port) {
 		checkPort()
 		manager(process.cwd()+baseSrc)
 		app.listen(port,function(){
-			console.log('服务器开启成功！端口 :'+port)
+			console.log('服务器开启成功！端口 :'+port);
+			console.warn('提示：若使用sass或scss语法，请在html的<link>标签src属性内将样式文件后缀拓展名改成.css，否则无法调用样式文件！');
+			console.log('如：<link rel="stylesheet" type="text/css" href="css/style.scss"> ');
+			console.log('应改为：<link rel="stylesheet" type="text/css" href="css/style.css">');
 		})
 		
 		function checkPort(){
