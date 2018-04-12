@@ -154,9 +154,20 @@ function manager(src){
 
 
 		 	function getCssData(){
-		 		var data = sass.renderSync({
-						file: file_url
-					})
+				 var data = {
+					 css: ''
+				 }
+				 try {
+					 data = sass.renderSync({
+						 file: file_url
+					 })
+				 }
+				 catch(err){
+					console.log(err)
+				 }
+		 		// var data = sass.renderSync({
+				// 		file: file_url
+				// 	})
 		 		res.setHeader('Content-Type','text/css')
 				res.send(data.css.toString())
 		 	}
