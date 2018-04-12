@@ -1,5 +1,11 @@
 # ms-point 使用文档
 
+## 修改新增功能
+
++ 编译出错时打印错误提示，不会自动关闭服务器。
++ `css`文件自动添加前缀。
++ `png`文件压缩。
+
 ## 工具安装
 
 + `npm install -g ms-point` 更新最新 ms-point
@@ -27,15 +33,18 @@
 + `livereload` 自动刷新
 + `ssi` `include` 语法 (语法形式为： `<!--#include virtual="header.shtml" -->` 如上语句将把该行代码位置替换成header.shtml文件内容。支持其他ssi语法 具体参阅 <a href="https://www.npmjs.com/package/ssi">ssi</a> )
 + `js`文件`css`文件打包 
++ `css`文件自动添加前缀
++ `png`文件压缩
 
 ## 打包处理
 
 + 通过执行 `msp pack` 执行打包命令（默认不压缩文件）。
 + 默认生成打包文件目录为 `./dist` 如已经存在 `dist`文件夹，则会将内部文件删除后再将打包文件复制进目录，因此若存在有用的同名文件夹请修改文件夹名称。
 + `msp pack` 命令会处理 `sass` 文件以及 `ssi` 语法，如果需要压缩 `js` 或 `css` 可跟参数 `-j|--javascript` ， `-c|--css` 或者 `-a|--all`。
-+ `-j|--javascript` 该参数会将所有`js`文件压缩。（暂不支持ES6语法压缩，若存在ES6语法将导致报错退出）。
++ `-j|--js` 该参数会将所有`js`文件压缩。（暂不支持ES6语法压缩，若存在ES6语法将导致报错退出）。
 + `-c|--css` 该参数会将所有`css`文件压缩（即使原先是`scss`或者`sass`也会被预编译后压缩）。
 + `-a|--all` 该参数会将`css`和`js`都压缩。
++ `-p|--png` 该参数会将`wwwroot`目录下的所有`.png`图片压缩。
 
 ## 打包实例
 

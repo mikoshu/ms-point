@@ -32,7 +32,8 @@ program
 
 program
   .option('-a, --all','打包文件中.js和.css文件进行压缩')
-  .option('-j, --javascript','打包时压缩js文件')
+  .option('-p, --png', '打包时压缩js文件')
+  .option('-j, --js','打包时压缩js文件')
   .option('-v, --version', '查看ms-point版本号')
   .option('-c, --css', '打包时只压缩css')
 
