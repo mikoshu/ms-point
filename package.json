@@ -32,7 +32,7 @@
     "opener": "^1.4.1",
     "serve-index": "^1.7.3",
     "ssi": "^0.3.0",
-    "uglify-js": "^2.6.2",
+    "uglify-js": "^3.3.20",
     "watchr": "^2.4.13",
     "websocket.io": "^0.2.1",
     "clean-css": "^3.4.20"
