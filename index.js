@@ -25,7 +25,7 @@ function portIsOccupied(port) {
 	server.on('listening', function () { // 执行这块代码说明端口未被占用
 		server.close() // 关闭服务
 		console.log('端口：' + port + '可用，启动服务器...') // 控制台输出信息
-		opener("http://localhost:" + port)
+		opener("http://local.mikoshu.me:" + port)
 		/************************/
 		checkPort()
 		manager(process.cwd() + baseSrc)
