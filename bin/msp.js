@@ -50,6 +50,7 @@ program
   .option('-j, --js','打包时压缩js文件')
   .option('-v, --version', '查看ms-point版本号')
   .option('-c, --css', '打包时只压缩css')
+  .option('es6, ES6', '编译ES6语法')
 
 program
     .command('*')
