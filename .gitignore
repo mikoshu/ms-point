@@ -1,0 +1,8 @@
+/node_modules
+/.git
+test.js
+/lib/wwwroot
+/example
+/wwww
+.DS_Store
+npm-debug.log
