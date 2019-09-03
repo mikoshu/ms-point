@@ -21,7 +21,8 @@ var express = require('express'),
 	livePort = 35729,
 	routerObj = {},
 	tempDir = '/_temp_scripts/',
-	maps = {}  // map 文件映射
+	maps = {}  // map 文件映射,
+	//server = ''
 
 module.exports = portIsOccupied
 
@@ -37,23 +38,23 @@ var arv = process.argv;
 	
 	
 
-function portIsOccupied(port) {
+function portIsOccupied(ports) {
 	// 创建服务并监听该端口
-	var server = net.createServer().listen(port)
-	port = port
-
+	port = parseInt(ports)
+	const server = new net.Server()
+	//console.log(server)
 	server.on('listening', function () { // 执行这块代码说明端口未被占用
 		server.close() // 关闭服务
 		console.log('端口：' + port + '可用，启动服务器...') // 控制台输出信息
-		opener("http://local.mikoshu.me:" + port)
-		/************************/
 		checkPort()
 		manager(process.cwd() + baseSrc)
+		//console.log(port)
 		app.listen(port, function () {
 			console.log('服务器开启成功！端口 :' + port);
 			console.warn('提示：若使用sass或scss语法，请在html的<link>标签src属性内将样式文件后缀拓展名改成.css，否则无法调用样式文件！');
 			console.log('如：<link rel="stylesheet" type="text/css" href="css/style.scss"> ');
 			console.log('应改为：<link rel="stylesheet" type="text/css" href="css/style.css">');
+			opener("http://local.mikoshu.me:" + port)
 		})
 
 		function checkPort() {
@@ -76,17 +77,23 @@ function portIsOccupied(port) {
 				}
 			})
 		}
-
-
-		/**********************/
 	})
 
 	server.on('error', function (err) {
+		//console.log(err)
 		if (err) { // 端口已经被使用
-			console.log('端口：' + port + '已被占用，更换其他端口来启动服务。')
-			getPort()
+			server.close() // 关闭服务
+			console.log('端口：' + port + '已被占用，更换其他端口来启动服务。例如使用命令 [msp start port=3000] 来更换端口')
+			//server = ''
+			//getPort()
 		}
 	})
+	try{
+		server.listen(port)
+	}catch(err){
+		console.log(err)
+	}
+	
 }
 
 function manager(src) {
@@ -317,6 +324,7 @@ function getPort() {
 		message: "请输入新端口号（eg: 3000）："
 	}]).then(function (result) {
 		if (result.name) {
+			//console.log(result.name)
 			portIsOccupied(result.name)
 		} else {
 			console.log("[!] 输入端口号不能为空！")

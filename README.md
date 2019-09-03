@@ -27,7 +27,8 @@
 + 初始化后的目录下会生成一个`wwwroot`文件夹，若已有该文件夹则忽略。
 + 初始化生成的`wwwroot`目录下将生成一个`example`文件夹，该文件夹下有本工具基本用法的实例。
 + 若已存在`wwwroot`目录，则不生成`example`实例文件。
-+ 初始化成功后，将自己的项目放入`wwwroot`文件夹下即可运行 `msp start` 开启服务（默认80端口，如端口被占用，可在命令行提示中输入想要的端口号执行服务）。
++ 初始化成功后，将自己的项目放入`wwwroot`文件夹下即可运行 `msp start` 开启服务（默认80端口，如端口被占用，可通过 `port=[端口号]` 来修改服务器开启端口，如 `msp start port=3333`）。
++ 如果在开发环境就需要编译 `ES6` 语法可以通过 `msp start es6` 来使当前引入的js资源通过虚拟路径编译为兼容性js文件以便低级浏览器 如 IE 浏览
 
 ## 集成功能
 
@@ -46,13 +47,13 @@
 + `msp pack` 命令会处理 `sass` 文件以及 `ssi` 语法，如果需要压缩 `js` 或 `css` 可跟参数 `-j|--js` ， `-c|--css` 或者 `-a|--all`。
 + `-j|--js` 该参数会将所有`js`文件压缩。（暂不支持ES6语法压缩，若存在ES6语法将导致报错退出）。
 + `-c|--css` 该参数会将所有`css`文件压缩（即使原先是`scss`或者`sass`也会被预编译后压缩）。
-+ `-a|--all` 该参数会将`css`和`js`以及`png`图片都压缩。
++ `-a|--all` 该参数会将`css`和`js`以及`png`图片都压缩（不处理ES6语法需要额外的 es6 参数）。
 + `-p|--png` 该参数会将`wwwroot`目录下的所有`.png`图片压缩。
 + `es6|ES6` 该参数将会编译`ES6`语法(包括引入本地的`js`文件以及`html`文件`script`标签内的`js`语句)，在启动服务`msp start`时添加该参数，将会预处理`ES6`语法(此时会先给引入的本地js文件添加一个虚拟目录`/_temp_scripts/`用于`sourceMap`定位原错误位置，用户可以不用理会，不影响文件打包)，js错误信息会通过`sourceMap`定位，（如果是`html`页面内的`js`标签内的`js`错误，将无法通过`sourceMap`定位，所以建议将`js`都以文件的方式引入，获得更好的体验）
 
 ## 打包实例
 
-	msp pack -a
+	msp pack -a es6
 
 + 运行如上代码，会将当前`wwwroot`目录下的内容打包到项目文件夹 `./dist` 文件夹下，且压缩`js`，`png`图片以及`css`文件。（ 默认配置已处理`scss`编译以及`ssi`语法，如要处理`ES6`语法，需额外添加`es6`参数，默认不处理`ES6`语法 ）
 
@@ -71,3 +72,24 @@
 ## 代理配置
 
 + `msp init` 初始化时生成 `DEV-INF/route.js` 文件，该文件用于对生成的 `express` 服务器进行代理配置具体用法可参见默认生成的`route.js`文件以及注释。
+```javascript
+module.exports = { // 反代配置 可配置多个代理
+    '/testApi': { // 将把所有包含 /testApi 的请求反向代理到 http://xxx.com  
+      // 如:http://localhost:port/testApi/xxx 都将代理到 http://xxx.com/testApi/xxx
+      target: 'http://xxx.com',
+      pathRewrite: {},
+      changeOrigin:true,
+      cookieDomainRewrite: ''
+      //更多参数配置请参照 https://www.npmjs.com/package/http-proxy-middleware
+    },
+    '/testApi2': { // 将把所有包含 testApi2 的请求反向代理到 http://yyy.com 
+      target: 'http://yyy.com',
+      pathRewrite: {},
+      changeOrigin:true,
+      cookieDomainRewrite: ''
+    },
+    ...
+  // 可配置更多相关代理信息
+}
+
+```
