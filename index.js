@@ -1,6 +1,6 @@
 var express = require('express'),
 	app = express(),
-	sass = require('node-sass'),
+	sass = require('sass'),
 	livereload = require('./express-livereload'),
 	serveIndex = require('serve-index'),
 	ssi = require('ssi'),
@@ -39,7 +39,7 @@ var arv = process.argv;
 	
 
 function portIsOccupied(ports) {
-	// 创建服务并监听该端口
+  // 创建服务并监听该端口
 	port = parseInt(ports)
 	const server = new net.Server()
 	//console.log(server)
